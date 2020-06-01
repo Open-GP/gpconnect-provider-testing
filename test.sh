@@ -1,0 +1,1 @@
+mono ./packages/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe "GPConnect.Provider.AcceptanceTests/bin/Debug/GPConnect.Provider.AcceptanceTests.dll" --where="Description='$1'"
