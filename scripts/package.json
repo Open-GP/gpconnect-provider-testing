@@ -1,0 +1,17 @@
+{
+  "name": "gpconnect-testing",
+  "version": "1.0.0",
+  "description": "Set of scripts to setup and run tests for GPConnect",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "OpenGP",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "crypto-js": "^4.0.0",
+    "csv-parser": "^2.3.2",
+    "uuidv4": "^6.1.0"
+  }
+}
