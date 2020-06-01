@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Configuration;
+using System;
 
 namespace GPConnect.Provider.AcceptanceTests.Helpers
 {
@@ -31,15 +32,15 @@ namespace GPConnect.Provider.AcceptanceTests.Helpers
         public static bool UseTLSStructured => Get<bool>("useTLSStructured");
 
         // Server Settings
-        public static string ServerUrlFoundationsAndAppmts => Get<string>("serverUrlFoundationsAndAppmts");
+        public static string ServerUrlFoundationsAndAppmts => Environment.GetEnvironmentVariable("serverUrl");
         public static string ServerHttpsPortFoundationsAndAppmts => Get<string>("serverHttpsPortFoundationsAndAppmts");
-        public static string ServerHttpPortFoundationsAndAppmts => Get<string>("serverHttpPortFoundationsAndAppmts");
-        public static string ServerBaseFoundationsAndAppmts => Get<string>("serverBaseFoundationsAndAppmts");
+        public static string ServerHttpPortFoundationsAndAppmts => Environment.GetEnvironmentVariable("serverHttpPort");
+        public static string ServerBaseFoundationsAndAppmts => Environment.GetEnvironmentVariable("serverBase");
 
-        public static string ServerUrlStructured => Get<string>("serverUrlStructured");
+        public static string ServerUrlStructured => Environment.GetEnvironmentVariable("serverUrl");
         public static string ServerHttpsPortStructured => Get<string>("serverHttpsPortStructured");
-        public static string ServerHttpPortStructured => Get<string>("serverHttpPortStructured");
-        public static string ServerBaseStructured => Get<string>("serverBaseStructured");
+        public static string ServerHttpPortStructured => Environment.GetEnvironmentVariable("serverHttpPort");
+        public static string ServerBaseStructured => Environment.GetEnvironmentVariable("serverBase");
 
         // Web Proxy Settings
         public static bool UseWebProxy => Get<bool>("useWebProxy");
