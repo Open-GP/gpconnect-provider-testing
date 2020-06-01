@@ -180,6 +180,7 @@
             FhirServerHttpPortFoundationsAndAppmts = AppSettingsHelper.ServerHttpPortFoundationsAndAppmts;
             FhirServerHttpsPortFoundationsAndAppmts = AppSettingsHelper.ServerHttpsPortFoundationsAndAppmts;
             FhirServerFhirBaseFoundationsAndAppmts = AppSettingsHelper.ServerBaseFoundationsAndAppmts;
+            FhirServerBasicAuthToken = AppSettingsHelper.BasicAuthToken;
 
             FhirServerUrlStructured = AppSettingsHelper.ServerUrlStructured;
             FhirServerHttpPortStructured = AppSettingsHelper.ServerHttpPortStructured;
@@ -206,6 +207,8 @@
         public string FhirServerHttpPortStructured { get; set; }
         public string FhirServerHttpsPortStructured { get; set; }
 
+        public string FhirServerBasicAuthToken { get; set; }
+
         public Parameters BodyParameters { get; set; }
 
         public HttpMethod HttpMethod { get; set; }
@@ -220,6 +223,9 @@
             RequestHeaders.ReplaceHeader(HttpConst.Headers.kSspFrom, ConsumerASID);
             RequestHeaders.ReplaceHeader(HttpConst.Headers.kSspTo, ProviderASID);
 
+            if (!string.IsNullOrWhiteSpace(FhirServerBasicAuthToken)) {
+                RequestHeaders.ReplaceHeader("Authorization", "Basic " + FhirServerBasicAuthToken);
+            }
             RequestHeaders.ReplaceHeader(HttpConst.Headers.kAccept, ContentType.Application.FhirJson);
             RequestContentType = ContentType.Application.FhirJson;
         }

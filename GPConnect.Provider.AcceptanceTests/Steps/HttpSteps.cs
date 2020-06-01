@@ -72,6 +72,15 @@
             return httpRequestConfiguration;
         }
 
+        private void setAuthentication(HttpRequestConfiguration httpRequestConfiguration) {
+             string auth = _httpContext.HttpRequestConfiguration.RequestHeaders.GetHeaderValue(HttpConst.Headers.kAuthorization);
+             Log.WriteLine("Auth =>");
+             Log.WriteLine(auth);
+             if (string.IsNullOrWhiteSpace(auth)) {
+                 httpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerToken());
+             }
+        }
+
         [Given(@"I configure the default ""(.*)"" request")]
         public void ConfigureRequest(GpConnectInteraction interaction)
         {
@@ -105,7 +114,7 @@
             
             _httpContext.HttpRequestConfiguration = GetRequestBody(interaction, _httpContext.HttpRequestConfiguration);
 
-            _httpContext.HttpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerToken());
+            setAuthentication(_httpContext.HttpRequestConfiguration);
 
             var httpRequest = new HttpContextRequest(_httpContext, _securityContext);
 
@@ -118,7 +127,7 @@
         {
             _httpContext.HttpRequestConfiguration = GetRequestBody(interaction, _httpContext.HttpRequestConfiguration);
 
-            _httpContext.HttpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerToken());
+            setAuthentication(_httpContext.HttpRequestConfiguration);
 
             _httpContext.HttpRequestConfiguration.RequestHeaders.RemoveHeader(headerKey);
 
@@ -134,7 +143,7 @@
 
             requestFactory.ConfigureBody(_httpContext.HttpRequestConfiguration);
 
-            _httpContext.HttpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerTokenWithoutEncoding());
+            setAuthentication(_httpContext.HttpRequestConfiguration);
 
             var httpRequest = new HttpContextRequest(_httpContext, _securityContext);
 
@@ -149,7 +158,7 @@
             requestFactory.ConfigureBody(_httpContext.HttpRequestConfiguration);
             requestFactory.ConfigureInvalidResourceType(_httpContext.HttpRequestConfiguration);
 
-            _httpContext.HttpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerToken());
+            setAuthentication(_httpContext.HttpRequestConfiguration);
 
             var httpRequest = new HttpContextRequest(_httpContext, _securityContext);
 
@@ -164,7 +173,7 @@
             requestFactory.ConfigureBody(_httpContext.HttpRequestConfiguration);
             requestFactory.ConfigureAdditionalInvalidFieldInResource(_httpContext.HttpRequestConfiguration);
 
-            _httpContext.HttpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerToken());
+            setAuthentication(_httpContext.HttpRequestConfiguration);
 
             var httpRequest = new HttpContextRequest(_httpContext, _securityContext);
 
@@ -177,7 +186,7 @@
             var requestFactory = new RequestFactory(interaction, _fhirResourceRepository);
             requestFactory.ConfigureBody(_httpContext.HttpRequestConfiguration);
             requestFactory.ConfigureInvalidParameterResourceType(_httpContext.HttpRequestConfiguration);
-            _httpContext.HttpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerToken());
+            setAuthentication(_httpContext.HttpRequestConfiguration);
 
             var httpRequest = new HttpContextRequest(_httpContext, _securityContext);
 
@@ -190,7 +199,7 @@
             var requestFactory = new RequestFactory(interaction, _fhirResourceRepository);
             requestFactory.ConfigureBody(_httpContext.HttpRequestConfiguration);
             requestFactory.ConfigureParameterResourceWithAdditionalField(_httpContext.HttpRequestConfiguration);
-            _httpContext.HttpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerToken());
+            setAuthentication(_httpContext.HttpRequestConfiguration);
 
             var httpRequest = new HttpContextRequest(_httpContext, _securityContext);
 
@@ -203,7 +212,7 @@
 
             _httpContext.HttpRequestConfiguration = GetRequestBody(interaction, _httpContext.HttpRequestConfiguration);
 
-            _httpContext.HttpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerToken());
+            setAuthentication(_httpContext.HttpRequestConfiguration);
 
             var httpRequest = new HttpContextRequest(_httpContext, _securityContext);
 
@@ -253,7 +262,7 @@
 
             requestFactory.ConfigureBody(httpRequestConfiguration);
 
-            httpRequestConfiguration.RequestHeaders.ReplaceHeader(HttpConst.Headers.kAuthorization, jwtHelper.GetBearerToken());
+            setAuthentication(httpRequestConfiguration);
 
             var httpRequest = new HttpResourceRequest(httpRequestConfiguration, _securityContext);
 

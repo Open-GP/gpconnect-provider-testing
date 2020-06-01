@@ -42,6 +42,8 @@ namespace GPConnect.Provider.AcceptanceTests.Helpers
         public static string ServerHttpPortStructured => Environment.GetEnvironmentVariable("serverHttpPort");
         public static string ServerBaseStructured => Environment.GetEnvironmentVariable("serverBase");
 
+        public static string BasicAuthToken => Environment.GetEnvironmentVariable("auth");
+
         // Web Proxy Settings
         public static bool UseWebProxy => Get<bool>("useWebProxy");
         public static string WebProxyUrl => Get<string>("webProxyUrl");
