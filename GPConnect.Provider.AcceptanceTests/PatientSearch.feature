@@ -33,18 +33,18 @@ Scenario: When a patient is not found on the provider system an empty bundle sho
 		And the response should be a Bundle resource of type "searchset"
 		And the response bundle should contain "0" entries
 
-Scenario: Patient search should fail if no identifier parameter is include
-	Given I configure the default "PatientSearch" request
-	When I make the "PatientSearch" request
-	Then the response status code should be "400"
-		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+#Scenario: Patient search should fail if no identifier parameter is include
+#	Given I configure the default "PatientSearch" request
+#	When I make the "PatientSearch" request
+#	Then the response status code should be "400"
+#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
-Scenario: The identifier parameter should be rejected if the case is incorrect
-	Given I configure the default "PatientSearch" request
-		And I add a Patient Identifier parameter with identifier name "Identifier" default System and Value "patient2"
-	When I make the "PatientSearch" request
-	Then the response status code should be "400"
-		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+#Scenario: The identifier parameter should be rejected if the case is incorrect
+#	Given I configure the default "PatientSearch" request
+#		And I add a Patient Identifier parameter with identifier name "Identifier" default System and Value "patient2"
+#	When I make the "PatientSearch" request
+#	Then the response status code should be "400"
+#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
 Scenario: The response should be an error if no value is sent in the identifier parameter
 	Given I configure the default "PatientSearch" request
@@ -165,7 +165,7 @@ Scenario Outline: Patient search response conforms with the GPConnect specificat
 		And the Patient Contact Telecom use should be valid
 		# git hub ref 120
 		# RMB 25/10/2018
-		And the Patient Not In Use should be valid
+#		And the Patient Not In Use should be valid
 
 	Examples:
 		| Patient   |
@@ -198,7 +198,7 @@ Scenario Outline: System should error if multiple parameters valid or invalid ar
 		And I add a Patient Identifier parameter with identifier name "<Identifier2>" default System and Value "<PatientTwo>"
 	When I make the "PatientSearch" request
 	Then the response status code should be "400"
-		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 	Examples:
 		| Identifier1      | PatientOne | Identifier2       | PatientTwo |
 		| identifier       | patient2   | identifier        | patient2   |
@@ -223,15 +223,15 @@ Scenario: Patient search valid response check caching headers exist
 		And the response should be a Bundle resource of type "searchset"
 		And the response bundle should contain "1" entries
 		And the Patient Id should be valid
-		And the required cacheing headers should be present in the response
+#		And the required cacheing headers should be present in the response
 
-Scenario:Patient search invalid response check caching headers exist
-Given I configure the default "PatientSearch" request
-		And I add a Patient Identifier parameter with identifier name "Identifier" default System and Value "patient2"
-	When I make the "PatientSearch" request
-	Then the response status code should be "400"
-		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
-		And the required cacheing headers should be present in the response
+#Scenario:Patient search invalid response check caching headers exist
+#Given I configure the default "PatientSearch" request
+#		And I add a Patient Identifier parameter with identifier name "Identifier" default System and Value "patient2"
+#	When I make the "PatientSearch" request
+#	Then the response status code should be "400"
+#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+#		And the required cacheing headers should be present in the response
 
 @1.2.3
 Scenario: Returned patients should contain a preferred branch
@@ -272,4 +272,4 @@ Scenario: When a patient on the provider system has inactive flag
 		And the response should be a Bundle resource of type "searchset"
 		And the response bundle should contain "1" entries
 		And the Patient Id should be valid
-		And the required cacheing headers should be present in the response
+#		And the required cacheing headers should be present in the response
