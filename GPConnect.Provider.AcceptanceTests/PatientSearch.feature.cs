@@ -200,6 +200,29 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("The identifier parameter should be rejected if the case is incorrect")]
+        public virtual void TheIdentifierParameterShouldBeRejectedIfTheCaseIsIncorrect()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The identifier parameter should be rejected if the case is incorrect", null, ((string[])(null)));
+#line 42
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 43
+ testRunner.Given("I configure the default \"PatientSearch\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 44
+  testRunner.And("I add a Patient Identifier parameter with identifier name \"Identifier\" default Sy" +
+                    "stem and Value \"patient2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+ testRunner.When("I make the \"PatientSearch\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 46
+ testRunner.Then("the response status code should be \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 47
+  testRunner.And("the response should be a OperationOutcome resource with error code \"BAD_REQUEST\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("The response should be an error if no value is sent in the identifier parameter")]
         public virtual void TheResponseShouldBeAnErrorIfNoValueIsSentInTheIdentifierParameter()
         {
@@ -465,6 +488,8 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.And("the Patient Link should be valid and resolvable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 165
   testRunner.And("the Patient Contact Telecom use should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 168
+  testRunner.And("the Patient Not In Use should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -512,6 +537,35 @@ this.ScenarioInitialize(scenarioInfo);
 #line 193
   testRunner.And("the CapabilityStatement REST Resources should contain the \"Patient\" Resource with" +
                     " the \"SearchType\" Interaction", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("System should error if multiple parameters valid or invalid are sent")]
+        [NUnit.Framework.TestCaseAttribute("identifier", "patient2", "identifier", "patient2", null)]
+        [NUnit.Framework.TestCaseAttribute("identifier", "patient1", "identifier", "patient2", null)]
+        [NUnit.Framework.TestCaseAttribute("identifier", "patient2", "identifier", "patient1", null)]
+        public virtual void SystemShouldErrorIfMultipleParametersValidOrInvalidAreSent(string identifier1, string patientOne, string identifier2, string patientTwo, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("System should error if multiple parameters valid or invalid are sent", null, exampleTags);
+#line 195
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 196
+  testRunner.Given("I configure the default \"PatientSearch\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 197
+  testRunner.And(string.Format("I add a Patient Identifier parameter with identifier name \"{0}\" default System an" +
+                        "d Value \"{1}\"", identifier1, patientOne), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 198
+  testRunner.And(string.Format("I add a Patient Identifier parameter with identifier name \"{0}\" default System an" +
+                        "d Value \"{1}\"", identifier2, patientTwo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 199
+ testRunner.When("I make the \"PatientSearch\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 200
+ testRunner.Then("the response status code should be \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 201
+  testRunner.And("the response should be a OperationOutcome resource with error code \"BAD_REQUEST\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -566,6 +620,33 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.And("the response bundle should contain \"1\" entries", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 225
   testRunner.And("the Patient Id should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 226
+  testRunner.And("the required cacheing headers should be present in the response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Patient search invalid response check caching headers exist")]
+        public virtual void PatientSearchInvalidResponseCheckCachingHeadersExist()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Patient search invalid response check caching headers exist", null, ((string[])(null)));
+#line 228
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 229
+testRunner.Given("I configure the default \"PatientSearch\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 230
+  testRunner.And("I add a Patient Identifier parameter with identifier name \"Identifier\" default Sy" +
+                    "stem and Value \"patient2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 231
+ testRunner.When("I make the \"PatientSearch\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 232
+ testRunner.Then("the response status code should be \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 233
+  testRunner.And("the response should be a OperationOutcome resource with error code \"BAD_REQUEST\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 234
+  testRunner.And("the required cacheing headers should be present in the response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -668,6 +749,8 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.And("the response bundle should contain \"1\" entries", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 274
   testRunner.And("the Patient Id should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 275
+  testRunner.And("the required cacheing headers should be present in the response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
