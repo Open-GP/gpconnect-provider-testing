@@ -26,11 +26,11 @@ Scenario Outline: Patient Read with valid identifier which does not exist on pro
 		| 40-9           |
 		| nd-skdm.mks--s |
 
-#Scenario: Read patient 400 or 404 if patient id not sent
-#	Given I configure the default "PatientRead" request
-#	When I make the "PatientRead" request
-#	Then the Response Status Code should be one of "400, 404"
-#		And the response should be a OperationOutcome resource
+Scenario: Read patient 400 or 404 if patient id not sent
+	Given I configure the default "PatientRead" request
+	When I make the "PatientRead" request
+	Then the Response Status Code should be one of "400, 404"
+		And the response should be a OperationOutcome resource
 
 Scenario Outline: Read patient using the Accept header to request response format
 	Given I get the Patient for Patient Value "patient1"
@@ -99,7 +99,7 @@ Scenario: Read patient response should contain an ETag header
 	When I make the "PatientRead" request
 	Then the response status code should indicate success
 		And the Response Resource should be a Patient
-#		And the Response should contain the ETag header matching the Resource Version Id
+		And the Response should contain the ETag header matching the Resource Version Id
 		And the Patient Identifiers should be valid for Patient "patient1"
 
 @1.2.3
@@ -130,7 +130,7 @@ Scenario: Read patient returned should conform to the GPconnect specification
 		And the Patient Registration Details should be valid
 		# git hub ref 120
 		# RMB 25/10/2018
-#		And the Patient Not In Use should be valid
+		And the Patient Not In Use should be valid
 
 Scenario: CapabilityStatement profile supports the Patient read operation
 	Given I configure the default "MetadataRead" request
@@ -145,14 +145,14 @@ Scenario: Patient read valid response check caching headers exist
 	When I make the "PatientRead" request
 	Then the response status code should indicate success
 		And the Response Resource should be a Patient
-#		And the required cacheing headers should be present in the response
+		And the required cacheing headers should be present in the response
 	
 Scenario: Patient read invalid response check caching headers exist
 	Given I configure the default "PatientRead" request
 		And I set the Read Operation logical identifier used in the request to "AABa"
 	When I make the "PatientRead" request
 	Then the response status code should be "404"
-#		And the required cacheing headers should be present in the response
+		And the required cacheing headers should be present in the response
 
 Scenario: Patient read valid response check preferred branch
 	Given I get the Patient for Patient Value "patient1"
@@ -201,4 +201,4 @@ Scenario: Check read patient on a patient with no Consent returns a valid respon
 		And the Patient Registration Details should be valid
 		# git hub ref 120
 		# RMB 25/10/2018
-#		And the Patient Not In Use should be valid
+		And the Patient Not In Use should be valid
