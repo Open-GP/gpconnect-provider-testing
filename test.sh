@@ -1,1 +1,1 @@
-serverUrl=$1 serverBase="/openmrs/ms/gpconnect/gpconnectServlet" serverHttpPort=8080 mono ./packages/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe "GPConnect.Provider.AcceptanceTests/bin/Debug/GPConnect.Provider.AcceptanceTests.dll" --where="$2" --result="TestResult.xml;format=nunit2"
+serverUrl=$1 serverBase="/openmrs/ms/gpconnect/gpconnectServlet" serverHttpPort=$2 mono ./packages/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe "GPConnect.Provider.AcceptanceTests/bin/Debug/GPConnect.Provider.AcceptanceTests.dll" --where="$3" --result="TestResult.xml;format=nunit2"
