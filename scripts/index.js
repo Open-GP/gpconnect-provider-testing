@@ -102,21 +102,25 @@ const generateJwtToken = (baseUrl) => {
     return encodedHeader + "." + encodedPayload + ".";
 };
 
-const retrievePatient = (demoServerBaseUrl, nhsNo) => {
-    const jwtString = generateJwtToken(demoServerBaseUrl);
+const jwtString = generateJwtToken(demoServerBaseUrl);
 
+const getHeaders = (jwtString, interaction) => {
+    return {
+        Authorization: `Bearer ${jwtString}`,
+        Accept: "application/fhir+json",
+        "Ssp-From": "200000000359",
+        "Ssp-To": "918999198993",
+        "Ssp-TraceID": uuid(),
+        "Ssp-InteractionID": interaction,
+    };
+};
+
+const retrievePatient = (demoServerBaseUrl, nhsNo) => {
     const config = {
         params: {
             identifier: `https://fhir.nhs.uk/Id/nhs-number|${nhsNo}`
         },
-        headers: {
-            Authorization: `Bearer ${jwtString}`,
-            Accept: "application/fhir+json",
-            "Ssp-From": "200000000359",
-            "Ssp-To": "918999198993",
-            "Ssp-TraceID": uuid(),
-            "Ssp-InteractionID": "urn:nhs:names:services:gpconnect:fhir:rest:search:patient-1",
-        }
+        headers: getHeaders(jwtString, "urn:nhs:names:services:gpconnect:fhir:rest:search:patient-1")
     };
 
 
@@ -154,6 +158,36 @@ const storePatient = patient => {
         });
 };
 
+
+const retrieveLocation = (demoServerBaseUrl, locationId) => {
+
+    const config = {
+        headers: getHeaders(jwtString, "urn:nhs:names:services:gpconnect:fhir:rest:read:location-1")
+    };
+
+    return axios
+        .get(`${demoServerBaseUrl}/Location/${locationId}`, config)
+        .then(result => {
+            return result.data;
+        })
+        .catch(err => {
+            console.log("error retrieving for:", locationId, err);
+        });
+};
+
+const storeLocation = location => {
+    axios
+        .put(`${testBaseUrl}/Location/${location.id}`, location,
+            {auth: {username: user, password: pass},
+                headers: {"Content-Type": "application/json"}})
+        .then(result => {
+            console.log("Success", patient.id, result.response.status)
+        })
+        .catch(err => {
+            console.log(err.response.data)
+        });
+};
+
 fs.createReadStream("../Data/NHSNoMap.csv")
     .pipe(csv())
     .on('data', (row) => {
@@ -162,10 +196,23 @@ fs.createReadStream("../Data/NHSNoMap.csv")
         }
     })
     .on('end', () => {
-        console.log('CSV file successfully processed');
+        console.log('Nhs No CSV file successfully processed');
         nhsNos.forEach(nhsNo => retrievePatient(demoServerBaseUrl, nhsNo)
             .then(hackPatientForOpenGP)
             .then(storePatient)
             .catch(error => console.log(error))
         );
+    });
+
+
+const locationIds = [];
+fs.createReadStream("../Data/LocationLogicalIdentifierMap.csv")
+    .pipe(csv())
+    .on('data', (row) => {
+        locationIds.push(row["LogicalIdentifier"]);
+    })
+    .on('end', () => {
+        console.log('Location CSV file successfully processed');
+
+        locationIds.forEach(locationId => retrieveLocation(demoServerBaseUrl, locationId).then(storeLocation).catch(console.log))
     });
