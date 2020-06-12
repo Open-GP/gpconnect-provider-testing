@@ -166,5 +166,6 @@ fs.createReadStream("../Data/NHSNoMap.csv")
         nhsNos.forEach(nhsNo => retrievePatient(demoServerBaseUrl, nhsNo)
             .then(hackPatientForOpenGP)
             .then(storePatient)
+            .catch(error => console.log(error))
         );
     });
