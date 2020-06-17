@@ -1,4 +1,4 @@
-﻿@patient @1.2.7-Full-Pack
+﻿@patient @1.2.7-Full-Pack @opengp
 Feature: OpenGP-PatientSearch
 
 Scenario: Returned patients should contain a logical identifier
@@ -33,11 +33,11 @@ Scenario: When a patient is not found on the provider system an empty bundle sho
 		And the response should be a Bundle resource of type "searchset"
 		And the response bundle should contain "0" entries
 
-#Scenario: Patient search should fail if no identifier parameter is include
-#	Given I configure the default "PatientSearch" request
-#	When I make the "PatientSearch" request
-#	Then the response status code should be "400"
-#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+Scenario: Patient search should fail if no identifier parameter is include
+	Given I configure the default "PatientSearch" request
+	When I make the "PatientSearch" request
+	Then the response status code should be "400"
+		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
 #Scenario: The identifier parameter should be rejected if the case is incorrect
 #	Given I configure the default "PatientSearch" request
@@ -198,7 +198,7 @@ Scenario Outline: System should error if multiple parameters valid or invalid ar
 		And I add a Patient Identifier parameter with identifier name "<Identifier2>" default System and Value "<PatientTwo>"
 	When I make the "PatientSearch" request
 	Then the response status code should be "400"
-#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 	Examples:
 		| Identifier1      | PatientOne | Identifier2       | PatientTwo |
 		| identifier       | patient2   | identifier        | patient2   |
