@@ -134,27 +134,30 @@ const retrievePatient = (demoServerBaseUrl, nhsNo) => {
         });
 };
 
-const hackPatientForOpenGP = patient => {
-    patient["deceasedBoolean"] = false;
-    patient.identifier[0]["use"] = "usual";
-    delete patient.name[0].prefix;
-    return patient;
-};
-
-const testBaseUrl = process.env.TEST_BASE_URL || "http://localhost:8080/openmrs/ws/fhir";
+const testBaseUrl = process.env.TEST_BASE_URL || "http://localhost:8080/openmrs/ms/gpconnect/gpconnectServlet";
 const user = process.env.TEST_USERNAME;
 const pass = process.env.PASS;
 
 
 const storePatient = patient => {
+    const body = {
+        resourceType: "Parameters",
+        parameter: [
+            {
+                name: "registerPatient",
+                resource: patient
+            }
+        ]
+    };
+    console.log(JSON.stringify(body));
     axios
-        .post(`${testBaseUrl}/Patient`, patient,{auth: {username: user, password: pass}})
+        .post(`${testBaseUrl}/Patient/$gpc.registerpatient`, body,{auth: {username: user, password: pass}})
         .then(result => {
-            console.log("Success", patient.id, result.response.status)
+            console.log("Success", patient.id, result)
         })
         .catch(err => {
             // console.log(patient);
-            console.log(err.response.data.issue)
+            console.log(err)
         });
 };
 
@@ -181,7 +184,39 @@ const storeLocation = location => {
             {auth: {username: user, password: pass},
                 headers: {"Content-Type": "application/json"}})
         .then(result => {
-            console.log("Success", patient.id, result.response.status)
+            console.log("Success")
+        })
+        .catch(err => {
+            console.log(err.response.data)
+        });
+};
+
+const retrievePractitioner = (demoServerBaseUrl, practitionerCode) => {
+
+    const config = {
+        params: {
+            identifier: `https://fhir.nhs.uk/Id/sds-user-id|${practitionerCode}`
+        },
+        headers: getHeaders(jwtString, "urn:nhs:names:services:gpconnect:fhir:rest:search:practitioner-1")
+    };
+
+    return axios
+        .get(`${demoServerBaseUrl}/Practitioner`, config)
+        .then(result => {
+            return result.data.entry[0].resource;
+        })
+        .catch(err => {
+            console.log("error retrieving for:", practitionerCode, err);
+        });
+};
+
+const storePractitioner = practitioner => {
+    axios
+        .post(`${testBaseUrl}/Practitioner`, practitioner,
+            {auth: {username: user, password: pass},
+                headers: {"Content-Type": "application/fhir+json"}})
+        .then(result => {
+            console.log("Success");
         })
         .catch(err => {
             console.log(err.response.data)
@@ -198,7 +233,6 @@ fs.createReadStream("../Data/NHSNoMap.csv")
     .on('end', () => {
         console.log('Nhs No CSV file successfully processed');
         nhsNos.forEach(nhsNo => retrievePatient(demoServerBaseUrl, nhsNo)
-            .then(hackPatientForOpenGP)
             .then(storePatient)
             .catch(error => console.log(error))
         );
@@ -215,4 +249,17 @@ fs.createReadStream("../Data/LocationLogicalIdentifierMap.csv")
         console.log('Location CSV file successfully processed');
 
         locationIds.forEach(locationId => retrieveLocation(demoServerBaseUrl, locationId).then(storeLocation).catch(console.log))
+    });
+
+
+const practitionerCodes = [];
+fs.createReadStream("../Data/PractitionerCodeMap.csv")
+    .pipe(csv())
+    .on('data', (row) => {
+        practitionerCodes.push(row["PROVIDER_PRACTITIONER_CODE"]);
+    })
+    .on('end', () => {
+        console.log('Practitioner CSV file successfully processed');
+
+        practitionerCodes.forEach(practitionerCode => retrievePractitioner(demoServerBaseUrl, practitionerCode).then(storePractitioner).catch(console.log))
     });
