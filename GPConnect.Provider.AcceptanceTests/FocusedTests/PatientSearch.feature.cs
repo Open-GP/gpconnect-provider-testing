@@ -21,7 +21,6 @@ namespace GPConnect.Provider.AcceptanceTests.FocusedTests
     [NUnit.Framework.DescriptionAttribute("OpenGP-PatientSearch")]
     [NUnit.Framework.CategoryAttribute("patient")]
     [NUnit.Framework.CategoryAttribute("1.2.7-Full-Pack")]
-    [NUnit.Framework.CategoryAttribute("opengp")]
     public partial class OpenGP_PatientSearchFeature
     {
         
@@ -36,8 +35,7 @@ namespace GPConnect.Provider.AcceptanceTests.FocusedTests
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "OpenGP-PatientSearch", null, ProgrammingLanguage.CSharp, new string[] {
                         "patient",
-                        "1.2.7-Full-Pack",
-                        "opengp"});
+                        "1.2.7-Full-Pack"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -207,7 +205,6 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("The patient search endpoint should accept the accept header")]
-        [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "XML", null)]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "JSON", null)]
         public virtual void ThePatientSearchEndpointShouldAcceptTheAcceptHeader(string acceptHeader, string resultFormat, string[] exampleTags)
         {
@@ -241,7 +238,6 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("The patient search endpoint should accept the format parameter")]
-        [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "XML", null)]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "JSON", null)]
         public virtual void ThePatientSearchEndpointShouldAcceptTheFormatParameter(string formatParam, string resultFormat, string[] exampleTags)
         {
@@ -276,10 +272,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("The patient search endpoint should accept the format parameter after the identifi" +
             "er parameter")]
-        [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "application/fhir+xml", "XML", null)]
-        [NUnit.Framework.TestCaseAttribute("application/fhir+json", "application/fhir+xml", "XML", null)]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "application/fhir+json", "JSON", null)]
-        [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "application/fhir+json", "JSON", null)]
         public virtual void ThePatientSearchEndpointShouldAcceptTheFormatParameterAfterTheIdentifierParameter(string acceptHeader, string formatParam, string resultFormat, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The patient search endpoint should accept the format parameter after the identifi" +
@@ -316,10 +309,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("The patient search endpoint should accept the format parameter before the identif" +
             "ier parameter")]
-        [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "application/fhir+xml", "XML", null)]
-        [NUnit.Framework.TestCaseAttribute("application/fhir+json", "application/fhir+xml", "XML", null)]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "application/fhir+json", "JSON", null)]
-        [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "application/fhir+json", "JSON", null)]
         public virtual void ThePatientSearchEndpointShouldAcceptTheFormatParameterBeforeTheIdentifierParameter(string acceptHeader, string formatParam, string resultFormat, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The patient search endpoint should accept the format parameter before the identif" +
@@ -349,39 +339,6 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.And("the Patient Id should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 118
   testRunner.And("the Patient Identifiers should be valid for Patient \"patient2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Patient resource should contain NHS number identifier returned as XML")]
-        [NUnit.Framework.TestCaseAttribute("patient1", null)]
-        [NUnit.Framework.TestCaseAttribute("patient2", null)]
-        [NUnit.Framework.TestCaseAttribute("patient3", null)]
-        public virtual void PatientResourceShouldContainNHSNumberIdentifierReturnedAsXML(string patient, string[] exampleTags)
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Patient resource should contain NHS number identifier returned as XML", null, exampleTags);
-#line 126
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 127
- testRunner.Given("I configure the default \"PatientSearch\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 128
-  testRunner.And("I set the Accept header to \"application/fhir+xml\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 129
-  testRunner.And(string.Format("I add a Patient Identifier parameter with default System and Value \"{0}\"", patient), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 130
- testRunner.When("I make the \"PatientSearch\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 131
- testRunner.Then("the response status code should indicate success", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 132
-  testRunner.And("the response body should be FHIR XML", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 133
-  testRunner.And("the response should be a Bundle resource of type \"searchset\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 134
-  testRunner.And("the response bundle should contain \"1\" entries", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 135
-  testRunner.And(string.Format("the Patient Identifiers should be valid for Patient \"{0}\"", patient), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

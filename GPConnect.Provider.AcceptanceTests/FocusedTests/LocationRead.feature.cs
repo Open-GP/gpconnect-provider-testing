@@ -21,7 +21,6 @@ namespace GPConnect.Provider.AcceptanceTests.FocusedTests
     [NUnit.Framework.DescriptionAttribute("LocationRead")]
     [NUnit.Framework.CategoryAttribute("location")]
     [NUnit.Framework.CategoryAttribute("1.2.7-Full-Pack")]
-    [NUnit.Framework.CategoryAttribute("opengp")]
     public partial class LocationReadFeature
     {
         
@@ -36,8 +35,7 @@ namespace GPConnect.Provider.AcceptanceTests.FocusedTests
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LocationRead", null, ProgrammingLanguage.CSharp, new string[] {
                         "location",
-                        "1.2.7-Full-Pack",
-                        "opengp"});
+                        "1.2.7-Full-Pack"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
