@@ -179,8 +179,19 @@ const retrieveLocation = (demoServerBaseUrl, locationId) => {
 };
 
 const storeLocation = location => {
+    const body = {
+        resourceType: "Parameters",
+        parameter: [
+            {
+                name: "location",
+                resource: location
+            }
+        ]
+    };
+
+
     axios
-        .put(`${testBaseUrl}/Location/${location.id}`, location,
+        .post(`${testBaseUrl}/Location/$setup`, body,
             {auth: {username: user, password: pass},
                 headers: {"Content-Type": "application/json"}})
         .then(result => {

@@ -1,4 +1,4 @@
-﻿@location @1.2.7-Full-Pack
+﻿@location @1.2.7-Full-Pack @opengp
 Feature: LocationRead
 
 @1.2.3
@@ -79,7 +79,7 @@ Scenario Outline: Location read resource conforms to GP-Connect specification
 		And the Response Resource should be a Location
 		And the Location Id should equal the Request Id
 		And the Location Identifier should be valid for Value "SIT2"
-#		And the Location Metadata should be valid
+		And the Location Metadata should be valid
 #		status // This is checked by the FHIR .NET library
 		And the Location Type should be valid
 		And the Location Telecom should be valid
@@ -95,12 +95,12 @@ Scenario Outline: Location read resource conforms to GP-Connect specification
 		| application/fhir+json | JSON       |
 		| application/fhir+xml  | XML        |
 
-#Scenario: Location read should contain ETag
-#	Given I set the Get Request Id to the Logical Identifer for Location "SIT1"
-#	Given I configure the default "LocationRead" request
-#	When I make the "LocationRead" request
-#	Then the response status code should indicate success
-#		And the Response should contain the ETag header matching the Resource Version Id
+Scenario: Location read should contain ETag
+	Given I set the Get Request Id to the Logical Identifer for Location "SIT1"
+	Given I configure the default "LocationRead" request
+	When I make the "LocationRead" request
+	Then the response status code should indicate success
+		And the Response should contain the ETag header matching the Resource Version Id
 
 Scenario: Location read valid response check caching headers exist
 	Given I set the Get Request Id to the Logical Identifer for Location "SIT1"
