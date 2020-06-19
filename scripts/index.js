@@ -222,8 +222,19 @@ const retrievePractitioner = (demoServerBaseUrl, practitionerCode) => {
 };
 
 const storePractitioner = practitioner => {
+
+    const body = {
+        resourceType: "Parameters",
+        parameter: [
+            {
+                name: "practitioner",
+                resource: practitioner
+            }
+        ]
+    };
+
     axios
-        .post(`${testBaseUrl}/Practitioner`, practitioner,
+        .post(`${testBaseUrl}/Practitioner/$setup`, body,
             {auth: {username: user, password: pass},
                 headers: {"Content-Type": "application/fhir+json"}})
         .then(result => {
@@ -234,33 +245,33 @@ const storePractitioner = practitioner => {
         });
 };
 
-fs.createReadStream("../Data/NHSNoMap.csv")
-    .pipe(csv())
-    .on('data', (row) => {
-        if (fakeNhsNo.includes(row["NATIVE_NHS_NUMBER"])) {
-            nhsNos.push(row["PROVIDER_NHS_NUMBER"]);
-        }
-    })
-    .on('end', () => {
-        console.log('Nhs No CSV file successfully processed');
-        nhsNos.forEach(nhsNo => retrievePatient(demoServerBaseUrl, nhsNo)
-            .then(storePatient)
-            .catch(error => console.log(error))
-        );
-    });
-
-
-const locationIds = [];
-fs.createReadStream("../Data/LocationLogicalIdentifierMap.csv")
-    .pipe(csv())
-    .on('data', (row) => {
-        locationIds.push(row["LogicalIdentifier"]);
-    })
-    .on('end', () => {
-        console.log('Location CSV file successfully processed');
-
-        locationIds.forEach(locationId => retrieveLocation(demoServerBaseUrl, locationId).then(storeLocation).catch(console.log))
-    });
+// fs.createReadStream("../Data/NHSNoMap.csv")
+//     .pipe(csv())
+//     .on('data', (row) => {
+//         if (fakeNhsNo.includes(row["NATIVE_NHS_NUMBER"])) {
+//             nhsNos.push(row["PROVIDER_NHS_NUMBER"]);
+//         }
+//     })
+//     .on('end', () => {
+//         console.log('Nhs No CSV file successfully processed');
+//         nhsNos.forEach(nhsNo => retrievePatient(demoServerBaseUrl, nhsNo)
+//             .then(storePatient)
+//             .catch(error => console.log(error))
+//         );
+//     });
+//
+//
+// const locationIds = [];
+// fs.createReadStream("../Data/LocationLogicalIdentifierMap.csv")
+//     .pipe(csv())
+//     .on('data', (row) => {
+//         locationIds.push(row["LogicalIdentifier"]);
+//     })
+//     .on('end', () => {
+//         console.log('Location CSV file successfully processed');
+//
+//         locationIds.forEach(locationId => retrieveLocation(demoServerBaseUrl, locationId).then(storeLocation).catch(console.log))
+//     });
 
 
 const practitionerCodes = [];
