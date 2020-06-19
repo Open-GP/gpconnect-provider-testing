@@ -127,6 +127,26 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Read patient 400 or 404 if patient id not sent")]
+        public virtual void ReadPatient400Or404IfPatientIdNotSent()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Read patient 400 or 404 if patient id not sent", null, ((string[])(null)));
+#line 29
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 30
+ testRunner.Given("I configure the default \"PatientRead\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 31
+ testRunner.When("I make the \"PatientRead\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
+ testRunner.Then("the Response Status Code should be one of \"400, 404\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 33
+  testRunner.And("the response should be a OperationOutcome resource", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Read patient using the Accept header to request response format")]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "JSON", null)]
         public virtual void ReadPatientUsingTheAcceptHeaderToRequestResponseFormat(string header, string responseFormat, string[] exampleTags)

@@ -26,11 +26,11 @@ Scenario Outline: Patient Read with valid identifier which does not exist on pro
 		| 40-9           |
 		| nd-skdm.mks--s |
 
-#Scenario: Read patient 400 or 404 if patient id not sent
-#	Given I configure the default "PatientRead" request
-#	When I make the "PatientRead" request
-#	Then the Response Status Code should be one of "400, 404"
-#		And the response should be a OperationOutcome resource
+Scenario: Read patient 400 or 404 if patient id not sent
+	Given I configure the default "PatientRead" request
+	When I make the "PatientRead" request
+	Then the Response Status Code should be one of "400, 404"
+		And the response should be a OperationOutcome resource
 
 Scenario Outline: Read patient using the Accept header to request response format
 	Given I get the Patient for Patient Value "patient1"
