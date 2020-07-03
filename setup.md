@@ -16,6 +16,11 @@ Setup
     $ nuget restore
     ```
 
+* Finally, we need to compile and build the project using Microsoft Build Engine:
+    ```
+    $ msbuild
+    ```
+    
 
 * To run the set of scripts to setup and run tests for GPConnect, run the following commands:
     ```
