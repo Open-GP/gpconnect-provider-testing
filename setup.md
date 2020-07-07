@@ -25,9 +25,9 @@ Setup
 * To run the set of scripts to setup and run tests for GPConnect, run the following commands:
     ```
     $ cd scripts && npm install
-    $ TEST_USERNAME=#{username} PASS=#{password} node index.js
+    $ PASS=#{password} npm run setupData
     ```
-    Please note that the username and password need to be replaced above when run.
+    Please note that the password need to be replaced above when run.
 
 
 * To run all acceptance tests, use the following command:
