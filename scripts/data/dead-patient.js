@@ -46,7 +46,7 @@ export const deadPatient = {
     }
   ],
   "gender": "male",
-  "deceasedDeathTime": "2020-09-12",
+  "deceasedDateTime": "2020-01-01",
   "birthDate": "1967-09-12",
   "address": [
     {
