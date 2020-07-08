@@ -214,6 +214,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Read patient sending the Accept header and _format parameter to request response " +
             "format")]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "application/fhir+json", "JSON", null)]
+        [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "application/fhir+json", "JSON", null)]
         public virtual void ReadPatientSendingTheAcceptHeaderAnd_FormatParameterToRequestResponseFormat(string header, string format, string bodyFormat, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Read patient sending the Accept header and _format parameter to request response " +
@@ -361,6 +362,8 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.And("the Patient Link should be valid and resolvable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 130
   testRunner.And("the Patient Registration Details should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 133
+  testRunner.And("the Patient Not In Use should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -512,6 +515,8 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.And("the Patient Link should be valid and resolvable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 201
   testRunner.And("the Patient Registration Details should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 204
+  testRunner.And("the Patient Not In Use should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

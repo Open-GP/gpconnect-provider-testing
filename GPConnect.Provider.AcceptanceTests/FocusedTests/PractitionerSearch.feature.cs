@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace GPConnect.Provider.AcceptanceTests
+namespace GPConnect.Provider.AcceptanceTests.FocusedTests
 {
     using TechTalk.SpecFlow;
     
@@ -21,6 +21,7 @@ namespace GPConnect.Provider.AcceptanceTests
     [NUnit.Framework.DescriptionAttribute("PractitionerSearch")]
     [NUnit.Framework.CategoryAttribute("practitioner")]
     [NUnit.Framework.CategoryAttribute("1.2.7-Full-Pack")]
+    [NUnit.Framework.CategoryAttribute("opengp")]
     public partial class PractitionerSearchFeature
     {
         
@@ -35,7 +36,8 @@ namespace GPConnect.Provider.AcceptanceTests
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PractitionerSearch", null, ProgrammingLanguage.CSharp, new string[] {
                         "practitioner",
-                        "1.2.7-Full-Pack"});
+                        "1.2.7-Full-Pack",
+                        "opengp"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

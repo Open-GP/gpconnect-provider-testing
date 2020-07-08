@@ -79,7 +79,7 @@ Scenario Outline: Read patient sending the Accept header and _format parameter t
 		| Header                | Format                | BodyFormat |
 		| application/fhir+json | application/fhir+json | JSON       |
 #		| application/fhir+json | application/fhir+xml  | XML        |
-#		| application/fhir+xml  | application/fhir+json | JSON       |
+		| application/fhir+xml  | application/fhir+json | JSON       |
 #		| application/fhir+xml  | application/fhir+xml  | XML        |
 
 Scenario: Read patient should contain correct logical identifier
@@ -130,7 +130,7 @@ Scenario: Read patient returned should conform to the GPconnect specification
 		And the Patient Registration Details should be valid
 		# git hub ref 120
 		# RMB 25/10/2018
-#		And the Patient Not In Use should be valid
+		And the Patient Not In Use should be valid
 
 Scenario: CapabilityStatement profile supports the Patient read operation
 	Given I configure the default "MetadataRead" request
@@ -201,4 +201,4 @@ Scenario: Check read patient on a patient with no Consent returns a valid respon
 		And the Patient Registration Details should be valid
 		# git hub ref 120
 		# RMB 25/10/2018
-#		And the Patient Not In Use should be valid
+		And the Patient Not In Use should be valid
