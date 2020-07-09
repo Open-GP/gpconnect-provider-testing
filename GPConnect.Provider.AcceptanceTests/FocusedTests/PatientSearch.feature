@@ -39,12 +39,12 @@ Scenario: Patient search should fail if no identifier parameter is include
 	Then the response status code should be "400"
 		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
-#Scenario: The identifier parameter should be rejected if the case is incorrect
-#	Given I configure the default "PatientSearch" request
-#		And I add a Patient Identifier parameter with identifier name "Identifier" default System and Value "patient2"
-#	When I make the "PatientSearch" request
-#	Then the response status code should be "400"
-#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+Scenario: The identifier parameter should be rejected if the case is incorrect
+	Given I configure the default "PatientSearch" request
+		And I add a Patient Identifier parameter with identifier name "Identifier" default System and Value "patient2"
+	When I make the "PatientSearch" request
+	Then the response status code should be "400"
+		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
 Scenario: The response should be an error if no value is sent in the identifier parameter
 	Given I configure the default "PatientSearch" request
@@ -121,7 +121,7 @@ Scenario Outline: The patient search endpoint should accept the format parameter
 #		| application/fhir+xml  | application/fhir+xml  | XML          |
 #		| application/fhir+json | application/fhir+xml  | XML          |
 		| application/fhir+json | application/fhir+json | JSON         |
-#		| application/fhir+xml  | application/fhir+json | JSON         |
+		| application/fhir+xml  | application/fhir+json | JSON         |
 
 #Scenario Outline: Patient resource should contain NHS number identifier returned as XML
 #	Given I configure the default "PatientSearch" request
