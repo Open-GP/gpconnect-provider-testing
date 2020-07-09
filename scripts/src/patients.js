@@ -69,6 +69,7 @@ export const setupPatients = (demoServerBaseUrl, testBaseUrl, user, pass) => {
             console.log('Nhs No CSV file successfully processed');
             nhsNos.forEach(
                 nhsNo => retrievePatient(demoServerBaseUrl, nhsNo)
+                .then(patient => {delete patient["id"]; return patient})
                 .then(patient => storePatient(patient, testBaseUrl, user, pass))
                 .catch(error => console.log(error))
             );

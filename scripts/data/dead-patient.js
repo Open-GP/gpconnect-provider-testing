@@ -38,6 +38,7 @@ export const deadPatient = {
       ]
     }
   ],
+  "active": true,
   "telecom": [
     {
       "system": "phone",
