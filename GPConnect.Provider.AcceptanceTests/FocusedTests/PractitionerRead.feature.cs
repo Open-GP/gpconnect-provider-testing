@@ -19,7 +19,7 @@ namespace GPConnect.Provider.AcceptanceTests.FocusedTests
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("PractitionerRead")]
-    [NUnit.Framework.CategoryAttribute("practitioner")]
+    [NUnit.Framework.CategoryAttribute("practitionerRead")]
     [NUnit.Framework.CategoryAttribute("1.2.7-Full-Pack")]
     [NUnit.Framework.CategoryAttribute("opengp")]
     public partial class PractitionerReadFeature
@@ -35,7 +35,7 @@ namespace GPConnect.Provider.AcceptanceTests.FocusedTests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PractitionerRead", null, ProgrammingLanguage.CSharp, new string[] {
-                        "practitioner",
+                        "practitionerRead",
                         "1.2.7-Full-Pack",
                         "opengp"});
             testRunner.OnFeatureStart(featureInfo);
@@ -326,6 +326,33 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I make the \"PractitionerRead\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 116
  testRunner.Then("the response status code should indicate success", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Practitioner read invalid response check caching headers exist")]
+        public virtual void PractitionerReadInvalidResponseCheckCachingHeadersExist()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Practitioner read invalid response check caching headers exist", null, ((string[])(null)));
+#line 119
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 120
+ testRunner.Given("I get the Practitioner for Practitioner Code \"practitioner1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 121
+  testRunner.And("I store the Practitioner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 122
+ testRunner.Given("I configure the default \"PractitionerRead\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 125
+  testRunner.And("I set the Interaction Id header to \"urn:nhs:names:services:gpconnect:fhir:rest:re" +
+                    "ad:location-1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 126
+ testRunner.When("I make the \"PractitionerRead\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 127
+ testRunner.Then("the response status code should be \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 128
+  testRunner.And("the response should be a OperationOutcome resource with error code \"BAD_REQUEST\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

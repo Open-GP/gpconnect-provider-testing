@@ -1,4 +1,4 @@
-﻿@practitioner @1.2.7-Full-Pack @opengp
+﻿@practitionerRead @1.2.7-Full-Pack @opengp
 Feature: PractitionerRead
 
 @1.2.3
@@ -116,16 +116,16 @@ Scenario: Practitioner read valid response check caching headers exist
 	Then the response status code should indicate success
 #		And the required cacheing headers should be present in the response
 
-#Scenario: Practitioner read invalid response check caching headers exist
-#	Given I get the Practitioner for Practitioner Code "practitioner1"
-#		And I store the Practitioner
-#	Given I configure the default "PractitionerRead" request
-#	# Amended test github ref 97
-#	# RMB 16/10/2018
-#		And I set the Interaction Id header to "urn:nhs:names:services:gpconnect:fhir:rest:read:location-1"
-#	When I make the "PractitionerRead" request
-#	Then the response status code should be "400"
-#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+Scenario: Practitioner read invalid response check caching headers exist
+	Given I get the Practitioner for Practitioner Code "practitioner1"
+		And I store the Practitioner
+	Given I configure the default "PractitionerRead" request
+	# Amended test github ref 97
+	# RMB 16/10/2018
+		And I set the Interaction Id header to "urn:nhs:names:services:gpconnect:fhir:rest:read:location-1"
+	When I make the "PractitionerRead" request
+	Then the response status code should be "400"
+		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 #		And the required cacheing headers should be present in the response
 
 # git hub ref 120
