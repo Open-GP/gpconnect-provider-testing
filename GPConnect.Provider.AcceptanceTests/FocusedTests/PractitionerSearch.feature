@@ -65,7 +65,7 @@ Scenario Outline: Practitioner search testing paramater validity before adding i
 	Examples:
 		| Param1Name | Param1Value           | BodyFormat |
 		| _format    | application/fhir+json | JSON       |
-		| _format    | application/fhir+xml  | XML        |
+#		| _format    | application/fhir+xml  | XML        |
 
 Scenario Outline: Practitioner search testing paramater validity after adding identifier
 	Given I configure the default "PractitionerSearch" request
@@ -82,7 +82,7 @@ Scenario Outline: Practitioner search testing paramater validity after adding id
 	Examples:
 		| Param1Name | Param1Value           | BodyFormat |
 		| _format    | application/fhir+json | JSON       |
-		| _format    | application/fhir+xml  | XML        |
+#		| _format    | application/fhir+xml  | XML        |
 
 
 Scenario Outline: Practitioner search add accept header to request and check for correct response format
@@ -100,7 +100,7 @@ Scenario Outline: Practitioner search add accept header to request and check for
 	Examples:
 		| Header                | BodyFormat |
 		| application/fhir+json | JSON       |
-		| application/fhir+xml  | XML        |
+#		| application/fhir+xml  | XML        |
 
 Scenario Outline: Practitioner search add accept header and _format parameter to the request and check for correct response format
 	Given I configure the default "PractitionerSearch" request
@@ -119,9 +119,9 @@ Scenario Outline: Practitioner search add accept header and _format parameter to
 	Examples:
 		| Header                | Parameter             | BodyFormat |
 		| application/fhir+json | application/fhir+json | JSON       |
-		| application/fhir+json | application/fhir+xml  | XML        |
+#		| application/fhir+json | application/fhir+xml  | XML        |
 		| application/fhir+xml  | application/fhir+json | JSON       |
-		| application/fhir+xml  | application/fhir+xml  | XML        |
+#		| application/fhir+xml  | application/fhir+xml  | XML        |
 
 @1.2.3
 Scenario: Practitioner search multiple identifier parameter failure

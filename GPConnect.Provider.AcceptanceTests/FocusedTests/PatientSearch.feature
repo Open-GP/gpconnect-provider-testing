@@ -102,7 +102,7 @@ Scenario Outline: The patient search endpoint should accept the format parameter
 #		| application/fhir+xml  | application/fhir+xml  | XML          |
 #		| application/fhir+json | application/fhir+xml  | XML          |
 		| application/fhir+json | application/fhir+json | JSON         |
-#		| application/fhir+xml  | application/fhir+json | JSON         |
+		| application/fhir+xml  | application/fhir+json | JSON         |
 
 Scenario Outline: The patient search endpoint should accept the format parameter before the identifier parameter
 	Given I configure the default "PatientSearch" request

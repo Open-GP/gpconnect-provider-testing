@@ -42,7 +42,7 @@ Scenario Outline: Location Read using the _format parameter to request response 
 	Examples:
 		| Format	            | ResponseFormat |
 		| application/fhir+json | JSON           |
-		| application/fhir+xml  | XML            |
+#		| application/fhir+xml  | XML            |
 
 Scenario Outline: Location Read sending the Accept header and _format parameter to request response format
 	Given I set the Get Request Id to the Logical Identifer for Location "SIT3"
@@ -58,9 +58,9 @@ Scenario Outline: Location Read sending the Accept header and _format parameter 
 	Examples:
 		| Header                | Format                | ResponseFormat |
 		| application/fhir+json | application/fhir+json | JSON           |
-		| application/fhir+json | application/fhir+xml  | XML            |
+#		| application/fhir+json | application/fhir+xml  | XML            |
 		| application/fhir+xml  | application/fhir+json | JSON           |
-		| application/fhir+xml  | application/fhir+xml  | XML            |
+#		| application/fhir+xml  | application/fhir+xml  | XML            |
 
 Scenario: CapabilityStatement profile supports the Location read operation
 	Given I configure the default "Metadataread" request
@@ -93,7 +93,7 @@ Scenario Outline: Location read resource conforms to GP-Connect specification
 	Examples:
 		| Header                | BodyFormat |
 		| application/fhir+json | JSON       |
-		| application/fhir+xml  | XML        |
+#		| application/fhir+xml  | XML        |
 
 Scenario: Location read should contain ETag
 	Given I set the Get Request Id to the Logical Identifer for Location "SIT1"
