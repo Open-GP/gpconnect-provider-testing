@@ -45,7 +45,7 @@ Scenario Outline: Read patient using the Accept header to request response forma
 	Examples:
 		| Header                | ResponseFormat |
 		| application/fhir+json | JSON           |
-#		| application/fhir+xml  | XML            |
+		| application/fhir+xml  | XML            |
 
 Scenario Outline: Read patient using the _format parameter to request response format
 	Given I get the Patient for Patient Value "patient1"
@@ -61,7 +61,7 @@ Scenario Outline: Read patient using the _format parameter to request response f
 	Examples:
 		| Format                | BodyFormat |
 		| application/fhir+json | JSON       |
-#		| application/fhir+xml  | XML        |
+		| application/fhir+xml  | XML        |
 
 Scenario Outline: Read patient sending the Accept header and _format parameter to request response format
 	Given I get the Patient for Patient Value "patient1"
@@ -78,9 +78,9 @@ Scenario Outline: Read patient sending the Accept header and _format parameter t
 	Examples:
 		| Header                | Format                | BodyFormat |
 		| application/fhir+json | application/fhir+json | JSON       |
-#		| application/fhir+json | application/fhir+xml  | XML        |
+		| application/fhir+json | application/fhir+xml  | XML        |
 		| application/fhir+xml  | application/fhir+json | JSON       |
-#		| application/fhir+xml  | application/fhir+xml  | XML        |
+		| application/fhir+xml  | application/fhir+xml  | XML        |
 
 Scenario: Read patient should contain correct logical identifier
 	Given I get the Patient for Patient Value "patient1"

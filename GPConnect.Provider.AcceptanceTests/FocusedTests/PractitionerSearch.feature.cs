@@ -166,6 +166,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Practitioner search testing paramater validity before adding identifier")]
         [NUnit.Framework.TestCaseAttribute("_format", "application/fhir+json", "JSON", null)]
+        [NUnit.Framework.TestCaseAttribute("_format", "application/fhir+xml", "XML", null)]
         public virtual void PractitionerSearchTestingParamaterValidityBeforeAddingIdentifier(string param1Name, string param1Value, string bodyFormat, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Practitioner search testing paramater validity before adding identifier", null, exampleTags);
@@ -202,6 +203,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Practitioner search testing paramater validity after adding identifier")]
         [NUnit.Framework.TestCaseAttribute("_format", "application/fhir+json", "JSON", null)]
+        [NUnit.Framework.TestCaseAttribute("_format", "application/fhir+xml", "XML", null)]
         public virtual void PractitionerSearchTestingParamaterValidityAfterAddingIdentifier(string param1Name, string param1Value, string bodyFormat, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Practitioner search testing paramater validity after adding identifier", null, exampleTags);
@@ -239,6 +241,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Practitioner search add accept header to request and check for correct response f" +
             "ormat")]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "JSON", null)]
+        [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "XML", null)]
         public virtual void PractitionerSearchAddAcceptHeaderToRequestAndCheckForCorrectResponseFormat(string header, string bodyFormat, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Practitioner search add accept header to request and check for correct response f" +
@@ -277,7 +280,9 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Practitioner search add accept header and _format parameter to the request and ch" +
             "eck for correct response format")]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "application/fhir+json", "JSON", null)]
+        [NUnit.Framework.TestCaseAttribute("application/fhir+json", "application/fhir+xml", "XML", null)]
         [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "application/fhir+json", "JSON", null)]
+        [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "application/fhir+xml", "XML", null)]
         public virtual void PractitionerSearchAddAcceptHeaderAnd_FormatParameterToTheRequestAndCheckForCorrectResponseFormat(string header, string parameter, string bodyFormat, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Practitioner search add accept header and _format parameter to the request and ch" +

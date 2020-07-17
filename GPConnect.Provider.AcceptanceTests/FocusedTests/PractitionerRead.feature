@@ -56,7 +56,7 @@ Scenario Outline: Practitioner Read using the _format parameter to request respo
 	Examples:
 		| Parameter             | ResponseFormat |
 		| application/fhir+json | JSON           |
-#		| application/fhir+xml  | XML            |
+		| application/fhir+xml  | XML            |
 
 Scenario Outline: Practitioner Read using the Accept header to request response format
 	Given I get the Practitioner for Practitioner Code "practitioner1"
@@ -72,7 +72,7 @@ Scenario Outline: Practitioner Read using the Accept header to request response 
 	Examples:
 		| Header                | ResponseFormat |
 		| application/fhir+json | JSON           |
-#		| application/fhir+xml  | XML            |
+		| application/fhir+xml  | XML            |
 
 Scenario Outline: Practitioner Read sending the Accept header and _format parameter to request response format
 	Given I get the Practitioner for Practitioner Code "practitioner2"
@@ -89,9 +89,9 @@ Scenario Outline: Practitioner Read sending the Accept header and _format parame
 	Examples:
 		| Header                | Parameter             | ResponseFormat |
 		| application/fhir+json | application/fhir+json | JSON           |
-#		| application/fhir+json | application/fhir+xml  | XML            |
+		| application/fhir+json | application/fhir+xml  | XML            |
 		| application/fhir+xml  | application/fhir+json | JSON           |
-#		| application/fhir+xml  | application/fhir+xml  | XML            |
+		| application/fhir+xml  | application/fhir+xml  | XML            |
 
 Scenario: CapabilityStatement profile supports the Practitioner read operation
 	Given I configure the default "MetadataRead" request
