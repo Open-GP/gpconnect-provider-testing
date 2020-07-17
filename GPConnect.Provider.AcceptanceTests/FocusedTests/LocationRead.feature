@@ -111,12 +111,12 @@ Scenario: Location read valid response check caching headers exist
 		And the Location Id should match the GET request Id
 #		And the required cacheing headers should be present in the response
 
-#Scenario: Location read invalid response check caching headers exist
-#	Given I set the Get Request Id to the Logical Identifer for Location "SIT1"
-#	Given I configure the default "LocationRead" request
-#		And I set the Interaction Id header to "urn:nhs:names:services:gpconnect:fhir:rest:read:practitioner-1"
-#	When I make the "LocationRead" request
-#	Then the response status code should be "400"
-#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+Scenario: Location read invalid response check caching headers exist
+	Given I set the Get Request Id to the Logical Identifer for Location "SIT1"
+	Given I configure the default "LocationRead" request
+		And I set the Interaction Id header to "urn:nhs:names:services:gpconnect:fhir:rest:read:practitioner-1"
+	When I make the "LocationRead" request
+	Then the response status code should be "400"
+		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 #		And the required cacheing headers should be present in the response
 	
