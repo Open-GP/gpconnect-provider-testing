@@ -1,4 +1,4 @@
-﻿@practitioner @1.2.7-Full-Pack @opengp
+﻿@practitionerSearch @1.2.7-Full-Pack @opengp
 Feature: PractitionerSearch
 
 # Common
@@ -40,15 +40,15 @@ Scenario: Practitioner search without the identifier parameter
 		And the response body should be FHIR JSON
 		And the response should be a OperationOutcome resource
 
-#Scenario Outline: Practitioner search where identifier contains the incorrect case or spelling
-#	Given I configure the default "PractitionerSearch" request
-#		And I add a Practitioner "<ParameterName>" parameter with System "https://fhir.nhs.uk/Id/sds-user-id" and Value "practitioner2"
-#	When I make the "PractitionerSearch" request
-#	Then the response status code should be "400"
-#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
-#	Examples:
-#		| ParameterName |
-#		| Identifier    |
+Scenario Outline: Practitioner search where identifier contains the incorrect case or spelling
+	Given I configure the default "PractitionerSearch" request
+		And I add a Practitioner "<ParameterName>" parameter with System "https://fhir.nhs.uk/Id/sds-user-id" and Value "practitioner2"
+	When I make the "PractitionerSearch" request
+	Then the response status code should be "400"
+		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+	Examples:
+		| ParameterName |
+		| Identifier    |
 
 Scenario Outline: Practitioner search testing paramater validity before adding identifier
 	Given I configure the default "PractitionerSearch" request
@@ -164,13 +164,13 @@ Scenario:Practitioner search valid response check caching headers exist
 		And the response should be a Bundle resource of type "searchset" 
 #		And the required cacheing headers should be present in the response
 
-#Scenario:Practitioner search invalid response check caching headers exist
-#	Given I configure the default "PractitionerSearch" request
-#		And I set the Interaction Id header to "urn:nhs:names:services:gpconnect:fhir:rest:read:practitioner-1"
-#		And I add a Practitioner Identifier parameter with SDS User Id System and Value "practitioner2"
-#	When I make the "PractitionerSearch" request
-#	Then the response status code should be "400"
-#		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+Scenario:Practitioner search invalid response check caching headers exist
+	Given I configure the default "PractitionerSearch" request
+		And I set the Interaction Id header to "urn:nhs:names:services:gpconnect:fhir:rest:read:practitioner-1"
+		And I add a Practitioner Identifier parameter with SDS User Id System and Value "practitioner2"
+	When I make the "PractitionerSearch" request
+	Then the response status code should be "400"
+		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 #		And the required cacheing headers should be present in the response
 	
 # git hub ref 120
