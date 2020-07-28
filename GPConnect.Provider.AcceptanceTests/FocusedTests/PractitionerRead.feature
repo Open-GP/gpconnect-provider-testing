@@ -18,7 +18,7 @@ Scenario Outline: Practitioner read successful request validate all of response
 		And the practitioner Telecom should be valid
 		And the practitioner Address should be valid
 		And the practitioner Gender should be valid
-#		And the Practitioner SDS Role Profile Identifier should be valid for "<numberOfRoleIdentifiers>" Role Profile Identifiers
+		And the Practitioner SDS Role Profile Identifier should be valid for "<numberOfRoleIdentifiers>" Role Profile Identifiers
 		And the Practitioner SDS User Identifier should be valid for Value "<practitioner>"
 
 	Examples: 

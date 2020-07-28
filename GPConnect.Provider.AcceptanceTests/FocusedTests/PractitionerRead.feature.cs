@@ -123,6 +123,9 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.And("the practitioner Address should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
   testRunner.And("the practitioner Gender should be valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+  testRunner.And(string.Format("the Practitioner SDS Role Profile Identifier should be valid for \"{0}\" Role Profi" +
+                        "le Identifiers", numberOfRoleIdentifiers), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
   testRunner.And(string.Format("the Practitioner SDS User Identifier should be valid for Value \"{0}\"", practitioner), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

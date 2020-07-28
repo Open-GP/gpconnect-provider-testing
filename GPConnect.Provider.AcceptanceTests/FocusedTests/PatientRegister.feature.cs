@@ -327,7 +327,6 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Register Patient and use both the Accept header and _format parameter to request " +
             "the response format")]
-        [NUnit.Framework.CategoryAttribute("opengp:wip")]
         [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "application/fhir+xml", "application/fhir+xml", "XML", null)]
         [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "application/fhir+xml", "application/fhir+json", "JSON", null)]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "application/fhir+json", "application/fhir+xml", "XML", null)]
@@ -338,14 +337,8 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "application/fhir+xml", "application/fhir+json", "JSON", null)]
         public virtual void RegisterPatientAndUseBothTheAcceptHeaderAnd_FormatParameterToRequestTheResponseFormat(string contentType, string acceptHeader, string format, string responseFormat, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "opengp:wip"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register Patient and use both the Accept header and _format parameter to request " +
-                    "the response format", null, @__tags);
+                    "the response format", null, exampleTags);
 #line 113
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
