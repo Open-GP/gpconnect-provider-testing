@@ -203,15 +203,15 @@ Scenario: Register patient which already exists on the system as a temporary pat
 	Then the response status code should be "409"
 		And the response should be a OperationOutcome resource with error code "DUPLICATE_REJECTED"
 
-Scenario: Register patient which is not the Spine
-	Given I create a Patient which does not exist on PDS and store it
-	Given I configure the default "RegisterPatient" request
-		And I add the Stored Patient as a parameter
-	When I make the "RegisterPatient" request
-	Then the response status code should be "400"
+# Scenario: Register patient which is not the Spine
+# 	Given I create a Patient which does not exist on PDS and store it
+# 	Given I configure the default "RegisterPatient" request
+# 		And I add the Stored Patient as a parameter
+# 	When I make the "RegisterPatient" request
+# 	Then the response status code should be "400"
 # Changed from BAD_REQUEST to 'INVALID_PATIENT_DEMOGRAPHICS' git hub ref 80
 # RMB 9/10/2018 
-		And the response should be a OperationOutcome resource with error code "INVALID_PATIENT_DEMOGRAPHICS"
+		# And the response should be a OperationOutcome resource with error code "INVALID_PATIENT_DEMOGRAPHICS"
 
 Scenario: Register patient with no official name
 	Given I get the next Patient to register and store it
@@ -434,21 +434,21 @@ Scenario Outline: Register patient with additional not allowed elements
 		| Animal        |
 		| Communication |
 		| Photo         |
-		| Deceased      |
+#		| Deceased      | (Test case to be validated via PDS)
 
-@1.2.3
-Scenario Outline: Register patient setting JWT request type to invalid type
-	Given I get the next Patient to register and store it
-	Given I configure the default "RegisterPatient" request
-		And I set the JWT requested scope to "<JWTType>"
-		And I add the Stored Patient as a parameter
-	When I make the "RegisterPatient" request
-	Then the response status code should be "400"
-		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
-	Examples:
-		| JWTType              |
-		| patient/*.read       |
-		| organization/*.read  |
+# @1.2.3
+# Scenario Outline: Register patient setting JWT request type to invalid type
+# 	Given I get the next Patient to register and store it
+# 	Given I configure the default "RegisterPatient" request
+# 		And I set the JWT requested scope to "<JWTType>"
+# 		And I add the Stored Patient as a parameter
+# 	When I make the "RegisterPatient" request
+# 	Then the response status code should be "400"
+# 		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+# 	Examples:
+# 		| JWTType              |
+# 		| patient/*.read       |
+# 		| organization/*.read  |
 
 Scenario:Register patient invalid response check caching headers exist
 	Given I get the next Patient to register and store it
@@ -475,14 +475,14 @@ Scenario:Register patient invalid response check caching headers exist
 
 # github ref 111
 # RMB 23/10/2018		
-Scenario: Register patient with family name not matching PDS
-	Given I get the next Patient to register and store it
-	Given I configure the default "RegisterPatient" request
-		And I change the Family Name from the Stored Patient
-		And I add the Stored Patient as a parameter
-	When I make the "RegisterPatient" request
-	Then the response status code should be "400"
-		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
+# Scenario: Register patient with family name not matching PDS
+# 	Given I get the next Patient to register and store it
+# 	Given I configure the default "RegisterPatient" request
+# 		And I change the Family Name from the Stored Patient
+# 		And I add the Stored Patient as a parameter
+# 	When I make the "RegisterPatient" request
+# 	Then the response status code should be "400"
+# 		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
 # github ref 111
 # RMB 23/10/2018		
