@@ -49,17 +49,17 @@ const storePractitioner = (practitioner, testBaseUrl, user, pass) => {
 
 
 export const setupPractitioners = (demoServerBaseUrl, testBaseUrl, user, pass) => {
-    const practitionerCodes = {};
+    const practitionerCodes = [];
     fs.createReadStream("../Data/PractitionerCodeMap.csv")
         .pipe(csv())
         .on('data', (row) => {
-            practitionerCodes.row["NATIVE_PRACTITIONER_CODE"]=[row["PROVIDER_PRACTITIONER_CODE"],row["SDS_ROLE_PROFILE_ID"]];
+            practitionerCodes.push(row["PROVIDER_PRACTITIONER_CODE"]);
         })
         .on('end', () => {
             console.log('Practitioner CSV file successfully processed');
 
-            practitionerCodes.keys().forEach(nativePractitionerCode =>
-                retrievePractitioner(demoServerBaseUrl, practitionerCodes[nativePractitionerCode][0])
+            practitionerCodes.forEach(practitionerCode =>
+                retrievePractitioner(demoServerBaseUrl, practitionerCode)
                     .then(practitioner => storePractitioner(practitioner, testBaseUrl, user, pass))
                     .catch(console.log)
             )
