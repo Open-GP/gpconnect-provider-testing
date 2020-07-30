@@ -562,31 +562,6 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Register patient which is not the Spine")]
-        public virtual void RegisterPatientWhichIsNotTheSpine()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register patient which is not the Spine", null, ((string[])(null)));
-#line 206
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 207
- testRunner.Given("I create a Patient which does not exist on PDS and store it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 208
- testRunner.Given("I configure the default \"RegisterPatient\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 209
-  testRunner.And("I add the Stored Patient as a parameter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 210
- testRunner.When("I make the \"RegisterPatient\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 211
- testRunner.Then("the response status code should be \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 214
-  testRunner.And("the response should be a OperationOutcome resource with error code \"INVALID_PATIE" +
-                    "NT_DEMOGRAPHICS\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Register patient with no official name")]
         public virtual void RegisterPatientWithNoOfficialName()
         {
@@ -993,7 +968,6 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Animal", null)]
         [NUnit.Framework.TestCaseAttribute("Communication", null)]
         [NUnit.Framework.TestCaseAttribute("Photo", null)]
-        [NUnit.Framework.TestCaseAttribute("Deceased", null)]
         public virtual void RegisterPatientWithAdditionalNotAllowedElements(string elementToAdd, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register patient with additional not allowed elements", null, exampleTags);
@@ -1015,41 +989,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 431
  testRunner.And("the response should be a OperationOutcome resource with error code \"INVALID_RESOU" +
                     "RCE\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Register patient setting JWT request type to invalid type")]
-        [NUnit.Framework.CategoryAttribute("1.2.3")]
-        [NUnit.Framework.TestCaseAttribute("patient/*.read", null)]
-        [NUnit.Framework.TestCaseAttribute("organization/*.read", null)]
-        public virtual void RegisterPatientSettingJWTRequestTypeToInvalidType(string jWTType, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "1.2.3"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register patient setting JWT request type to invalid type", null, @__tags);
-#line 440
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 441
- testRunner.Given("I get the next Patient to register and store it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 442
- testRunner.Given("I configure the default \"RegisterPatient\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 443
-  testRunner.And(string.Format("I set the JWT requested scope to \"{0}\"", jWTType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 444
-  testRunner.And("I add the Stored Patient as a parameter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 445
- testRunner.When("I make the \"RegisterPatient\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 446
- testRunner.Then("the response status code should be \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 447
-  testRunner.And("the response should be a OperationOutcome resource with error code \"BAD_REQUEST\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -1084,38 +1023,12 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Register patient with family name not matching PDS")]
-        [NUnit.Framework.CategoryAttribute("1.2.3")]
-        public virtual void RegisterPatientWithFamilyNameNotMatchingPDS()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register patient with family name not matching PDS", null, new string[] {
-                        "1.2.3"});
-#line 478
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 479
- testRunner.Given("I get the next Patient to register and store it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 480
- testRunner.Given("I configure the default \"RegisterPatient\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 481
-  testRunner.And("I change the Family Name from the Stored Patient", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 482
-  testRunner.And("I add the Stored Patient as a parameter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 483
- testRunner.When("I make the \"RegisterPatient\" request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 484
- testRunner.Then("the response status code should be \"400\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 485
-  testRunner.And("the response should be a OperationOutcome resource with error code \"BAD_REQUEST\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Register sensitive patient")]
+        [NUnit.Framework.CategoryAttribute("1.2.3")]
         public virtual void RegisterSensitivePatient()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register sensitive patient", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register sensitive patient", null, new string[] {
+                        "1.2.3"});
 #line 520
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

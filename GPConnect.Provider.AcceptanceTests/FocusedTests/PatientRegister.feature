@@ -434,7 +434,7 @@ Scenario Outline: Register patient with additional not allowed elements
 		| Animal        |
 		| Communication |
 		| Photo         |
-#		| Deceased      | (Test case to be validated via PDS)
+		| Deceased      |
 
 # @1.2.3
 # Scenario Outline: Register patient setting JWT request type to invalid type
@@ -450,6 +450,7 @@ Scenario Outline: Register patient with additional not allowed elements
 # 		| patient/*.read       |
 # 		| organization/*.read  |
 
+	@opengp:cache
 Scenario:Register patient invalid response check caching headers exist
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -461,7 +462,7 @@ Scenario:Register patient invalid response check caching headers exist
 		And the required cacheing headers should be present in the response
 
 
-@1.2.3 
+@1.2.3 @opengp:pds
 # Scenario: Register patient and check preferred branch 
 # 	Given I get the next Patient to register and store it
 # 	Given I configure the default "RegisterPatient" request
@@ -473,6 +474,7 @@ Scenario:Register patient invalid response check caching headers exist
 # 		And the response bundle should contain a single Patient resource
 # 		And the Patient Registration Details Extension should be valid
 
+@opengp:pds
 # github ref 111
 # RMB 23/10/2018		
 # Scenario: Register patient with family name not matching PDS
@@ -485,7 +487,8 @@ Scenario:Register patient invalid response check caching headers exist
 # 		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
 # github ref 111
-# RMB 23/10/2018		
+# RMB 23/10/2018
+@opengp:pds
 #Scenario: Register patient with gender not matching PDS
 #	Given I get the next Patient to register and store it
 #	Given I configure the default "RegisterPatient" request
@@ -494,9 +497,10 @@ Scenario:Register patient invalid response check caching headers exist
 #	When I make the "RegisterPatient" request
 #	Then the response status code should be "400"
 #		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
-		
+
 # github ref 111
-# RMB 23/10/2018		
+# RMB 23/10/2018
+@opengp:pds
 #Scenario: Register patient with birth date not matching PDS
 #	Given I get the next Patient to register and store it
 #	Given I configure the default "RegisterPatient" request
@@ -507,7 +511,8 @@ Scenario:Register patient invalid response check caching headers exist
 #		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 #
 # github demonstrator ref 128
-# RMB 29/10/2018		
+# RMB 29/10/2018
+@opengp:pds
 	# Scenario: Register deceased patient
 	# Given I get the next Patient to register and store it
 	# Given I configure the default "RegisterPatient" request
@@ -517,6 +522,7 @@ Scenario:Register patient invalid response check caching headers exist
 	# Then the response status code should be "400"
 	# 	And the response should be a OperationOutcome resource with error code "INVALID_PATIENT_DEMOGRAPHICS"
 
+@opengp:pds
 	Scenario: Register sensitive patient
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -526,6 +532,7 @@ Scenario:Register patient invalid response check caching headers exist
 	Then the response status code should be "400"
 		And the response should be a OperationOutcome resource with error code "INVALID_PATIENT_DEMOGRAPHICS"
 
+	@opengp:pds
 	Scenario: Register superseded patient
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
