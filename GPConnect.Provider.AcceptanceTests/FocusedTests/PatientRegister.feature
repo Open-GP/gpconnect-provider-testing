@@ -1,5 +1,6 @@
-﻿@patient @1.2.7-Full-Pack @opengp:reg
+﻿@patient @1.2.7-Full-Pack 
 
+@opengp:reg
 Feature: PatientRegister
 Scenario Outline: Register patient send request to incorrect URL
 	Given I get the next Patient to register and store it
@@ -14,6 +15,7 @@ Scenario Outline: Register patient send request to incorrect URL
 		| 2017-05-05	| Patient/$gpc.registerpatien    |
 		| 1999-01-22	| Patient/$gpc.registerpati#ent  |
 
+@opengp:reg
 Scenario: Register patient without sending identifier within patient
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -23,7 +25,7 @@ Scenario: Register patient without sending identifier within patient
 	Then the response status code should be "400"
 		And the response should be a OperationOutcome resource with error code "INVALID_NHS_NUMBER"
 
-@1.2.3
+@1.2.3 @opengp:reg
 Scenario: Register patient without gender element
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -40,6 +42,7 @@ Scenario: Register patient without gender element
 		And the Patient Registration Details Extension should be valid
 		And the Patient Demographics should match the Stored Patient
 
+@opengp:reg
 Scenario: Register patient without date of birth element
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -49,6 +52,7 @@ Scenario: Register patient without date of birth element
 	Then the response status code should be "400"
 		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
+@opengp:reg
 Scenario Outline: Register patient with an invalid NHS number
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -66,6 +70,7 @@ Scenario Outline: Register patient with an invalid NHS number
 		| 9000000008  |
 		| 90000000090 |
 
+@opengp:reg
 Scenario Outline: Register Patient and use the Accept Header to request response format
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -110,6 +115,7 @@ Scenario Outline: Register Patient and use the _format parameter to request the 
 		| application/fhir+xml  | XML            |
 		| application/fhir+json | JSON           |
 
+@opengp:reg
 Scenario Outline: Register Patient and use both the Accept header and _format parameter to request the response format
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -141,6 +147,7 @@ Scenario Outline: Register Patient and use both the Accept header and _format pa
 		| application/fhir+xml  | application/fhir+json | application/fhir+xml  | XML            |
 		| application/fhir+json | application/fhir+xml  | application/fhir+json | JSON           |
 
+@opengp:reg
 Scenario: Register patient with invalid bundle resource type
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -149,6 +156,7 @@ Scenario: Register patient with invalid bundle resource type
 	Then the response status code should be "422"
 		And the response should be a OperationOutcome resource with error code "INVALID_RESOURCE"
 
+@opengp:reg
 Scenario: Register patient with invalid patient resource type
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -157,7 +165,7 @@ Scenario: Register patient with invalid patient resource type
 	Then the response status code should be "422"
 		And the response should be a OperationOutcome resource with error code "INVALID_RESOURCE"
 	
-@1.2.3
+@1.2.3 @opengp:reg
 Scenario: Register patient with invalid patient resource with additional element
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -165,7 +173,8 @@ Scenario: Register patient with invalid patient resource with additional element
 	When I make the "RegisterPatient" request with additional field in parameter Resource
 	Then the response status code should be "422"
 		And the response should be a OperationOutcome resource with error code "INVALID_RESOURCE"
-			
+
+@opengp:reg			
 Scenario: Register patient with duplicate patient resource parameters
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -189,6 +198,7 @@ Scenario: Register patient1 which already exists on the system as a normal patie
 		Then the response status code should be "409"
 		And the response should be a OperationOutcome resource with error code "DUPLICATE_REJECTED"
 
+@opengp:reg
 Scenario: Register patient which already exists on the system as a temporary patient
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -213,6 +223,7 @@ Scenario: Register patient which already exists on the system as a temporary pat
 # RMB 9/10/2018 
 		# And the response should be a OperationOutcome resource with error code "INVALID_PATIENT_DEMOGRAPHICS"
 
+@opengp:reg
 Scenario: Register patient with no official name
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -222,6 +233,7 @@ Scenario: Register patient with no official name
 	Then the response status code should be "400"
 		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
+@opengp:reg
 Scenario Outline: Register Patient with multiple given names
 	Given I get the next Patient to register and store it
     Given I configure the default "RegisterPatient" request
@@ -238,6 +250,7 @@ Scenario Outline: Register Patient with multiple given names
 		| 2               |
 		| 5               |
 
+@opengp:reg
 Scenario: Register patient no family names
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -247,6 +260,7 @@ Scenario: Register patient no family names
 	Then the response status code should be "400"
 		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
+@opengp:reg
 Scenario: Register patient containing identifier without mandatory system elements
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -256,6 +270,7 @@ Scenario: Register patient containing identifier without mandatory system elemen
 	Then the response status code should be "400"
 		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 
+@opengp:reg
 Scenario Outline: Register patient with additional valid elements
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -284,6 +299,7 @@ Scenario Outline: Register patient with additional valid elements
 
 # github ref 136
 # RMB 1/11/2018
+@opengp:reg
 Scenario Outline: Register patient with invalid additional valid elements
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -301,6 +317,7 @@ Scenario Outline: Register patient with invalid additional valid elements
 		| ManagingOrg   |
 		| Marital       |
 
+@opengp:reg
 Scenario: Register patient with Address and Telecom
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -316,7 +333,7 @@ Scenario: Register patient with Address and Telecom
 # RMB 12/11/2018
 # github ref 180
 # RMB 6/2/19
-
+@opengp:reg
 Scenario: Register patient with Multiple Address not allowed and Telecom
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -328,6 +345,7 @@ Scenario: Register patient with Multiple Address not allowed and Telecom
 	Then the response status code should be "422"
 		And the response should be a OperationOutcome resource with error code "INVALID_RESOURCE"
 
+@opengp:reg
 Scenario Outline: Register patient with Address and Valid Telecom elements
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -362,6 +380,7 @@ Scenario Outline: Register patient with Address and Valid Telecom elements
 		| Email  | Mobile |
 		| Email  | Temp   |
 
+@opengp:reg
 Scenario Outline: Register patient with Address and Invalid Telecom elements
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -379,7 +398,8 @@ Scenario Outline: Register patient with Address and Invalid Telecom elements
 		| Mobile | Mobile |
 		| Temp   | Temp   |
 		| Email  | Email  |
-	
+
+@opengp:reg	
 Scenario: Register patient with Address Telecom and nhsCommunication
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -396,6 +416,7 @@ Scenario: Register patient with Address Telecom and nhsCommunication
 # RMB 8/1/19
 		And the Patient NhsCommunicationExtension should be valid
 
+@opengp:reg
 Scenario: Register patient with Address Telecom and multiple nhsCommunication
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -421,6 +442,7 @@ Scenario: Register patient with Address Telecom and multiple nhsCommunication
 #		| Telecom      |
 #		| Address      |
 
+@opengp:reg
 Scenario Outline: Register patient with additional not allowed elements
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -450,7 +472,7 @@ Scenario Outline: Register patient with additional not allowed elements
 # 		| patient/*.read       |
 # 		| organization/*.read  |
 
-	@opengp:cache
+@opengp:cache
 Scenario:Register patient invalid response check caching headers exist
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -523,24 +545,24 @@ Scenario:Register patient invalid response check caching headers exist
 	# 	And the response should be a OperationOutcome resource with error code "INVALID_PATIENT_DEMOGRAPHICS"
 
 @opengp:pds
-	Scenario: Register sensitive patient
-	Given I get the next Patient to register and store it
-	Given I configure the default "RegisterPatient" request
-		And I add the Stored Patient as a parameter
-		And I change the NHSNo from the Stored Patient "patient9"
-	When I make the "RegisterPatient" request
-	Then the response status code should be "400"
-		And the response should be a OperationOutcome resource with error code "INVALID_PATIENT_DEMOGRAPHICS"
+Scenario: Register sensitive patient
+Given I get the next Patient to register and store it
+Given I configure the default "RegisterPatient" request
+	And I add the Stored Patient as a parameter
+	And I change the NHSNo from the Stored Patient "patient9"
+When I make the "RegisterPatient" request
+Then the response status code should be "400"
+	And the response should be a OperationOutcome resource with error code "INVALID_PATIENT_DEMOGRAPHICS"
 
 	@opengp:pds
-	Scenario: Register superseded patient
-	Given I get the next Patient to register and store it
-	Given I configure the default "RegisterPatient" request
-		And I add the Stored Patient as a parameter
-		And I change the NHSNo from the Stored Patient "patient11"
-	When I make the "RegisterPatient" request
-	Then the response status code should be "400"
-		And the response should be a OperationOutcome resource with error code "INVALID_NHS_NUMBER"
+Scenario: Register superseded patient
+Given I get the next Patient to register and store it
+Given I configure the default "RegisterPatient" request
+	And I add the Stored Patient as a parameter
+	And I change the NHSNo from the Stored Patient "patient11"
+When I make the "RegisterPatient" request
+Then the response status code should be "400"
+	And the response should be a OperationOutcome resource with error code "INVALID_NHS_NUMBER"
 
 # git hub ref 154
 # RMB 8/1/19
@@ -560,7 +582,7 @@ Scenario:Register patient invalid response check caching headers exist
 
 # git hub ref 180
 # RMB 4/2/19
-@1.2.3
+@1.2.3 @opengp:reg
 Scenario Outline: Register patient with Multiple Address Use types
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -577,6 +599,7 @@ Scenario Outline: Register patient with Multiple Address Use types
 
 # git hub ref 180
 # RMB 4/2/19
+@opengp:reg
 Scenario Outline: Register patient with Invalid Multiple Address Use types
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -601,6 +624,7 @@ Scenario Outline: Register patient with Invalid Multiple Address Use types
 
 # git hub ref 180
 # RMB 4/2/19
+@opengp:reg
 Scenario Outline: Register patient with Invalid Address Use type
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
