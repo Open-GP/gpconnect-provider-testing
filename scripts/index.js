@@ -6,8 +6,10 @@ const demoServerBaseUrl = "https://orange.testlab.nhs.uk/gpconnect-demonstrator/
 const testBaseUrl = process.env.TEST_BASE_URL || "http://localhost:8080/openmrs/ms/gpconnect/gpconnectServlet";
 const user = process.env.TEST_USERNAME;
 const pass = process.env.PASS;
+const updateLocalData = (process.env.UPDATE_LOCAL_DATA === 'true');
 
+const config = {demoServerBaseUrl, testBaseUrl, user, pass, updateLocalData}
 
-setupPatients(demoServerBaseUrl, testBaseUrl, user, pass);
-setupLocations(demoServerBaseUrl, testBaseUrl, user, pass);
-setupPractitioners(demoServerBaseUrl, testBaseUrl, user, pass);
+setupPatients(config);
+setupLocations(config);
+setupPractitioners(config);
