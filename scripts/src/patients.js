@@ -18,13 +18,13 @@ const seedPatient = (patient, testBaseUrl, user, pass) => {
         resourceType: "Parameters",
         parameter: [
             {
-                name: "registerPatient",
+                name: "patient",
                 resource: patient
             }
         ]
     };
     axios
-        .post(`${testBaseUrl}/Patient/$gpc.registerpatient`, body,{auth: {username: user, password: pass}})
+        .post(`${testBaseUrl}/Patient/$setup`, body,{auth: {username: user, password: pass}})
         .then(result => {
             console.log("Patient Success", patient.identifier)
         })
