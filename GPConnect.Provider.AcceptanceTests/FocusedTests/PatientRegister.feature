@@ -1,7 +1,7 @@
 ﻿@patient @1.2.7-Full-Pack 
 
-@opengp:reg
 Feature: PatientRegister
+@opengp:reg
 Scenario Outline: Register patient send request to incorrect URL
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
@@ -184,7 +184,7 @@ Scenario: Register patient with duplicate patient resource parameters
 	Then the response status code should be "400"
 		And the response should be a OperationOutcome resource with error code "BAD_REQUEST"
 			
-@1.2.3
+@1.2.3 @opengp:reg
 Scenario: Register patient1 which already exists on the system as a normal patient
 	Given I configure the default "PatientSearch" request
 		And I add a Patient Identifier parameter with default System and Value "patient1"
@@ -554,7 +554,7 @@ When I make the "RegisterPatient" request
 Then the response status code should be "400"
 	And the response should be a OperationOutcome resource with error code "INVALID_PATIENT_DEMOGRAPHICS"
 
-	@opengp:pds
+@opengp:pds
 Scenario: Register superseded patient
 Given I get the next Patient to register and store it
 Given I configure the default "RegisterPatient" request

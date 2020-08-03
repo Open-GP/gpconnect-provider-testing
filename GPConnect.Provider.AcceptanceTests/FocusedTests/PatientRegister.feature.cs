@@ -21,7 +21,6 @@ namespace GPConnect.Provider.AcceptanceTests.FocusedTests
     [NUnit.Framework.DescriptionAttribute("PatientRegister")]
     [NUnit.Framework.CategoryAttribute("patient")]
     [NUnit.Framework.CategoryAttribute("1.2.7-Full-Pack")]
-    [NUnit.Framework.CategoryAttribute("opengp:reg")]
     public partial class PatientRegisterFeature
     {
         
@@ -36,8 +35,7 @@ namespace GPConnect.Provider.AcceptanceTests.FocusedTests
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PatientRegister", null, ProgrammingLanguage.CSharp, new string[] {
                         "patient",
-                        "1.2.7-Full-Pack",
-                        "opengp:reg"});
+                        "1.2.7-Full-Pack"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,11 +75,18 @@ namespace GPConnect.Provider.AcceptanceTests.FocusedTests
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Register patient send request to incorrect URL")]
+        [NUnit.Framework.CategoryAttribute("opengp:reg")]
         [NUnit.Framework.TestCaseAttribute("2017-05-05", "Patient/$gpc.registerpatien", null)]
         [NUnit.Framework.TestCaseAttribute("1999-01-22", "Patient/$gpc.registerpati#ent", null)]
         public virtual void RegisterPatientSendRequestToIncorrectURL(string startDate, string url, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register patient send request to incorrect URL", null, exampleTags);
+            string[] @__tags = new string[] {
+                    "opengp:reg"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register patient send request to incorrect URL", null, @__tags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -248,12 +253,14 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Register Patient and use the Accept Header to request response format")]
         [NUnit.Framework.CategoryAttribute("opengp:reg")]
+        [NUnit.Framework.CategoryAttribute("opengp:wip")]
         [NUnit.Framework.TestCaseAttribute("application/fhir+xml", "XML", null)]
         [NUnit.Framework.TestCaseAttribute("application/fhir+json", "JSON", null)]
         public virtual void RegisterPatientAndUseTheAcceptHeaderToRequestResponseFormat(string contentType, string responseFormat, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "opengp:reg"};
+                    "opengp:reg",
+                    "opengp:wip"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -525,10 +532,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Register patient1 which already exists on the system as a normal patient")]
         [NUnit.Framework.CategoryAttribute("1.2.3")]
+        [NUnit.Framework.CategoryAttribute("opengp:reg")]
         public virtual void RegisterPatient1WhichAlreadyExistsOnTheSystemAsANormalPatient()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register patient1 which already exists on the system as a normal patient", null, new string[] {
-                        "1.2.3"});
+                        "1.2.3",
+                        "opengp:reg"});
 #line 188
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
