@@ -88,7 +88,7 @@ Scenario Outline: Register Patient and use the Accept Header to request response
 		And the Patient Nhs Number Identifer should be valid
 		And the Patient Registration Details Extension should be valid
 		And the Patient Demographics should match the Stored Patient
-		And the required cacheing headers should be present in the response
+#		And the required cacheing headers should be present in the response
 	Examples:
 		| ContentType           | ResponseFormat |
 		| application/fhir+xml  | XML            |
@@ -119,7 +119,7 @@ Scenario Outline: Register Patient and use the _format parameter to request the 
 Scenario Outline: Register Patient and use both the Accept header and _format parameter to request the response format
 	Given I get the next Patient to register and store it
 	Given I configure the default "RegisterPatient" request
-		And I add a generic Identifier to the Stored Patient
+#		And I add a generic Identifier to the Stored Patient
 		And I set the request content type to "<ContentType>"
 		And I set the Accept header to "<AcceptHeader>"
 		And I add a Format parameter with the Value "<Format>"
